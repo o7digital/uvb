@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /*.html$
+Disallow: /upload/
+
+Sitemap: https://uvb.edu.mx/wp-sitemap.xml
+
+
