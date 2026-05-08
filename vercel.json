@@ -1,4 +1,7 @@
 {
+  "installCommand": "npm --prefix astro install",
+  "buildCommand": "npm --prefix astro run build",
+  "outputDirectory": "astro/dist",
   "cleanUrls": true,
   "trailingSlash": true,
   "rewrites": [
