@@ -2,19 +2,34 @@
 import CampusSelector from '../components/CampusSelector.astro';
 import HomeHero from '../components/HomeHero.astro';
 import HomeInfo from '../components/HomeInfo.astro';
+
+const title = 'UVB Universidad Valle del Bravo - Somos La Valle';
+const description =
+  'Universidad Valle del Bravo. Educación privada en Tampico y Reynosa con preparatoria, licenciaturas y educación continua.';
+const canonicalUrl = 'https://uvb.edu.mx/';
+const ogImage = 'https://uvb.edu.mx/images/home/hero-lab.jpg';
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>UVB Universidad Valle del Bravo - Somos La Valle</title>
-    <meta
-      name="description"
-      content="Universidad Valle del Bravo. Somos La Valle, con campus Tampico y Reynosa."
-    />
-    <link rel="canonical" href="https://uvb.edu.mx/" />
-    <link rel="icon" href="/uvb.edu.mx/wp-content/uploads/2025/07/favicon.png" type="image/png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Universidad Valle del Bravo" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
