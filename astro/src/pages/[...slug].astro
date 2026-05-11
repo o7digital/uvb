@@ -1,0 +1,17 @@
+---
+import { readFileSync } from 'node:fs';
+import { getMirrorRoutes, getMirrorSourcePath } from '../lib/mirror-pages';
+
+export function getStaticPaths() {
+  return getMirrorRoutes().map((route) => ({
+    params: {
+      slug: route,
+    },
+  }));
+}
+
+const sourcePath = getMirrorSourcePath(Astro.params.slug);
+const html = readFileSync(sourcePath, 'utf-8');
+---
+
+<Fragment set:html={html} />
