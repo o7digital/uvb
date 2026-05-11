@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
-export const sourceRoot = join(process.cwd(), 'public', 'uvb.edu.mx');
+export const sourceRoot = join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx');
 
 function getHtmlFiles(directory: string): string[] {
   return readdirSync(directory).flatMap((entry) => {

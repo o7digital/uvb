@@ -3,11 +3,5 @@
   "buildCommand": "npm --prefix astro run build",
   "outputDirectory": "astro/dist",
   "cleanUrls": true,
-  "trailingSlash": true,
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/uvb.edu.mx/index.html"
-    }
-  ]
+  "trailingSlash": true
 }
