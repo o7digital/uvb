@@ -76,10 +76,34 @@ function localizeInternalUrl(match: string, pathname: string): string {
 }
 
 export function localizeInternalUrls(html: string): string {
-  return html.replaceAll(`${sourceOrigin}/`, '/').replaceAll(sourceOrigin, '/')
+  let cleaned = html
+    .replaceAll(`${sourceOrigin}/`, '/')
+    .replaceAll(sourceOrigin, '/')
     .replace(/\/(?:wp-content|wp-includes|wp-json|xmlrpc\.php|reynosa\/(?:wp-content|wp-includes|wp-json|xmlrpc\.php))(?:[^"' <)]*)/g, (match) =>
       localizeInternalUrl(match, match),
     );
+
+  // Remove legacy WordPress discovery/feed metadata that is not needed on static output.
+  cleaned = cleaned
+    .replace(/<link rel="alternate" type="application\/rss\+xml"[^>]*>\s*/g, '')
+    .replace(/<link rel="alternate" title="oEmbed \(JSON\)"[^>]*>\s*/g, '')
+    .replace(/<link rel="alternate" title="oEmbed \(XML\)"[^>]*>\s*/g, '');
+
+  // Use a single robots directive.
+  cleaned = cleaned
+    .replace(/<meta name='robots' content='max-image-preview:large' \/>\s*/g, '')
+    .replace(
+      /<meta name="robots" content="index, follow" \/>/g,
+      '<meta name="robots" content="index, follow, max-image-preview:large" />',
+    );
+
+  // Normalize canonical links to absolute production URLs.
+  cleaned = cleaned.replace(
+    /<link rel="canonical" href="\/([^"]*)" \/>/g,
+    (_match, path: string) => `<link rel="canonical" href="${sourceOrigin}/${path}" />`,
+  );
+
+  return cleaned;
 }
 
 export function readMirrorHtml(filePath: string): string {
