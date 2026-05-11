@@ -2,8 +2,8 @@
 import {
   getMirrorRoutes,
   getMirrorSourcePath,
-  readMirrorHtml,
 } from '../lib/mirror-pages';
+import MirrorPage from '../components/MirrorPage.astro';
 
 export function getStaticPaths() {
   return getMirrorRoutes().map((route) => ({
@@ -14,7 +14,6 @@ export function getStaticPaths() {
 }
 
 const sourcePath = getMirrorSourcePath(Astro.params.slug);
-const html = readMirrorHtml(sourcePath);
 ---
 
-<Fragment set:html={html} />
+<MirrorPage sourcePath={sourcePath} />

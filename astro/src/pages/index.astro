@@ -1,10 +1,8 @@
 ---
 import { join } from 'node:path';
-import { readMirrorHtml } from '../lib/mirror-pages';
+import MirrorPage from '../components/MirrorPage.astro';
 
-const html = readMirrorHtml(
-  join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx', 'index.html'),
-);
+const sourcePath = join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx', 'index.html');
 ---
 
-<Fragment set:html={html} />
+<MirrorPage sourcePath={sourcePath} />

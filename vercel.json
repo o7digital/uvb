@@ -3,5 +3,17 @@
   "buildCommand": "npm --prefix astro run build",
   "outputDirectory": "astro/dist",
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/reynosa.html",
+      "destination": "/reynosa/",
+      "permanent": true
+    }
+  ]
 }
