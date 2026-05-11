@@ -41,9 +41,13 @@ function routeFromFile(filePath: string): string | null {
 }
 
 export function getMirrorRoutes(): string[] {
+  const excludedPrefixes = ['wp-json', 'xmlrpc.php', 'feed', 'comments/feed'];
+
   return getHtmlFiles(sourceRoot)
     .map(routeFromFile)
     .filter((route): route is string => Boolean(route))
+    .filter((route) => !excludedPrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}/`)))
+    .filter((route) => !route.includes('/wp-json') && !route.includes('/xmlrpc.php') && !route.endsWith('/feed') && !route.includes('/comments/feed'))
     .sort((a, b) => a.localeCompare(b));
 }
 
