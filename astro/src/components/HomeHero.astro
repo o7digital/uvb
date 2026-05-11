@@ -1,0 +1,111 @@
+---
+const somosImage = '/uvb.edu.mx/wp-content/uploads/2025/03/Somos-La-Valle.png';
+---
+
+<section class="hero" aria-labelledby="home-title">
+  <div class="hero__overlay"></div>
+  <img
+    src="/logo-uvb-50.png"
+    alt="Logo oficial UVB 50 años"
+    class="hero__anniversary"
+  />
+  <div class="hero__content">
+    <h1 id="home-title">Universidad Valle del Bravo</h1>
+    <img src={somosImage} alt="Somos La Valle" class="hero__brand" />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 75vh;
+    overflow: hidden;
+    background-image: url('/uvb.edu.mx/wp-content/uploads/2025/03/banner-admisiones.jpg');
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 88, 42, 0.62);
+  }
+
+  .hero__anniversary {
+    position: absolute;
+    top: 22%;
+    right: 4%;
+    z-index: 3;
+    width: 340px;
+    height: auto;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
+    pointer-events: none;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    min-height: 75vh;
+    width: min(1130px, calc(100% - 48px));
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 72px 0;
+  }
+
+  .hero h1 {
+    margin: 0 0 28px;
+    font-family: Montserrat, sans-serif;
+    font-size: clamp(25px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .hero__brand {
+    width: min(58vw, 720px);
+    height: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .hero__anniversary {
+      top: 20%;
+      right: 3%;
+      width: 250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 78vh;
+      background-position: 56% center;
+    }
+
+    .hero__content {
+      min-height: 78vh;
+      width: calc(100% - 56px);
+      justify-content: center;
+      padding-top: 90px;
+    }
+
+    .hero h1 {
+      max-width: 56%;
+      margin-bottom: 28px;
+      font-size: 25px;
+    }
+
+    .hero__brand {
+      width: min(92vw, 620px);
+    }
+
+    .hero__anniversary {
+      top: 12%;
+      right: 5%;
+      width: 132px;
+    }
+  }
+</style>
