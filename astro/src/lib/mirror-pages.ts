@@ -41,16 +41,23 @@ function routeFromFile(filePath: string): string | null {
 }
 
 export function getMirrorRoutes(): string[] {
-  return getHtmlFiles(sourceRoot).map(routeFromFile).filter(Boolean);
+  return getHtmlFiles(sourceRoot)
+    .map(routeFromFile)
+    .filter((route): route is string => Boolean(route))
+    .sort((a, b) => a.localeCompare(b));
 }
 
 export function getMirrorSourcePath(slug: string): string {
-  const cleanSlug = slug;
+  const cleanSlug = slug.trim().replace(/^\/+|\/+$/g, '');
   const directHtml = join(sourceRoot, `${cleanSlug}.html`);
   const indexHtml = join(sourceRoot, cleanSlug, 'index.html');
 
   if (existsSync(directHtml)) {
     return directHtml;
+  }
+
+  if (!existsSync(indexHtml)) {
+    throw new Error(`Mirror source file not found for slug "${slug}"`);
   }
 
   return indexHtml;
