@@ -1,7 +1,18 @@
-import { existsSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 export const sourceRoot = join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx');
+const sourceOrigin = 'https://uvb.edu.mx';
+const assetPrefixes = [
+  '/wp-content/',
+  '/wp-includes/',
+  '/wp-json/',
+  '/xmlrpc.php',
+  '/reynosa/wp-content/',
+  '/reynosa/wp-includes/',
+  '/reynosa/wp-json/',
+  '/reynosa/xmlrpc.php',
+];
 
 function getHtmlFiles(directory: string): string[] {
   return readdirSync(directory).flatMap((entry) => {
@@ -43,4 +54,23 @@ export function getMirrorSourcePath(slug: string): string {
   }
 
   return indexHtml;
+}
+
+function localizeInternalUrl(match: string, pathname: string): string {
+  if (assetPrefixes.some((prefix) => pathname.startsWith(prefix))) {
+    return `${sourceOrigin}${pathname}`.replace(sourceOrigin, '/uvb.edu.mx');
+  }
+
+  return pathname || '/';
+}
+
+export function localizeInternalUrls(html: string): string {
+  return html.replaceAll(`${sourceOrigin}/`, '/').replaceAll(sourceOrigin, '/')
+    .replace(/\/(?:wp-content|wp-includes|wp-json|xmlrpc\.php|reynosa\/(?:wp-content|wp-includes|wp-json|xmlrpc\.php))(?:[^"' <)]*)/g, (match) =>
+      localizeInternalUrl(match, match),
+    );
+}
+
+export function readMirrorHtml(filePath: string): string {
+  return localizeInternalUrls(readFileSync(filePath, 'utf-8'));
 }

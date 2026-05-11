@@ -1,10 +1,9 @@
 ---
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { readMirrorHtml } from '../lib/mirror-pages';
 
-const html = readFileSync(
+const html = readMirrorHtml(
   join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx', 'index.html'),
-  'utf-8',
 );
 ---
 
