@@ -1,0 +1,7 @@
+---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+const html = readFileSync(join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx', 'reynosa.html'), 'utf-8');
+---
+
+<Fragment set:html={html} />
