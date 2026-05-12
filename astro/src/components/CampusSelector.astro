@@ -1,21 +1,35 @@
 ---
-const campuses = [
-  {
-    name: 'Campus Reynosa',
-    href: '/reynosa/',
-    image: '/images/home/campus-reynosa.webp',
-  },
-  {
-    name: 'Campus Tampico',
-    href: 'https://tampico.uvb.edu.mx/',
-    image: '/images/home/campus-tampico.webp',
-  },
-];
+interface Campus {
+  name: string;
+  href: string;
+  image: string;
+}
+
+interface Props {
+  title?: string;
+  campuses?: Campus[];
+}
+
+const {
+  title = 'Selecciona tu Campus',
+  campuses = [
+    {
+      name: 'Campus Reynosa',
+      href: '/reynosa/',
+      image: '/images/home/campus-reynosa.webp',
+    },
+    {
+      name: 'Campus Tampico',
+      href: 'https://tampico.uvb.edu.mx/',
+      image: '/images/home/campus-tampico.webp',
+    },
+  ],
+} = Astro.props;
 ---
 
 <section class="campuses" aria-labelledby="campuses-title">
   <div class="section-inner">
-    <h2 id="campuses-title">Selecciona tu Campus</h2>
+    <h2 id="campuses-title">{title}</h2>
     <div class="campus-grid">
       {campuses.map((campus) => (
         <a class="campus-card" href={campus.href} aria-label={campus.name}>

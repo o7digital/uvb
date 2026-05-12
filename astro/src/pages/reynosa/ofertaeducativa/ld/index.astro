@@ -1,7 +1,8 @@
 ---
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-const html = readFileSync(join(process.cwd(), 'src', 'mirror', 'uvb.edu.mx', 'reynosa/ofertaeducativa/ld/index.html'), 'utf-8');
+import { addSpanishLanguageSwitch } from '../../../../lib/bilingual';
+const html = addSpanishLanguageSwitch(readFileSync(join(process.cwd(), 'src/mirror/uvb.edu.mx/reynosa/ofertaeducativa/ld/index.html'), 'utf-8'));
 ---
 
 <Fragment set:html={html} />

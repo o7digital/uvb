@@ -38,6 +38,7 @@ const ogImage = 'https://uvb.edu.mx/images/home/hero-lab.webp';
     />
   </head>
   <body>
+    <div class="lang-switch"><a class="active" href="/">ES</a><span>|</span><a href="/en/">EN</a></div>
     <HomeHero />
     <CampusSelector />
     <HomeInfo />
@@ -54,5 +55,33 @@ const ogImage = 'https://uvb.edu.mx/images/home/hero-lab.webp';
     background: #fff;
     font-family: Montserrat, sans-serif;
     color: #222;
+  }
+
+  .lang-switch {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(4px);
+  }
+
+  .lang-switch a {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.7;
+  }
+
+  .lang-switch a.active {
+    opacity: 1;
+    font-weight: 700;
   }
 </style>

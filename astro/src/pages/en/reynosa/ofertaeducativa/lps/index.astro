@@ -1,0 +1,8 @@
+---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { toEnglishLegacyHtml } from '../../../../../lib/bilingual';
+const html = toEnglishLegacyHtml(readFileSync(join(process.cwd(), 'src/mirror/uvb.edu.mx/reynosa/ofertaeducativa/lps/index.html'), 'utf-8'));
+---
+
+<Fragment set:html={html} />

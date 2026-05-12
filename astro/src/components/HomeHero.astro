@@ -1,4 +1,14 @@
 ---
+interface Props {
+  heading?: string;
+  brandAlt?: string;
+}
+
+const {
+  heading = 'Universidad Valle del Bravo',
+  brandAlt = 'Somos La Valle',
+} = Astro.props;
+
 const somosImage = '/images/home/somos-la-valle.webp';
 ---
 
@@ -10,8 +20,8 @@ const somosImage = '/images/home/somos-la-valle.webp';
     class="hero__anniversary"
   />
   <div class="hero__content">
-    <h1 id="home-title">Universidad Valle del Bravo</h1>
-    <img src={somosImage} alt="Somos La Valle" class="hero__brand" />
+    <h1 id="home-title">{heading}</h1>
+    <img src={somosImage} alt={brandAlt} class="hero__brand" />
   </div>
 </section>
 

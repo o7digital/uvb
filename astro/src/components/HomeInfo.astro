@@ -1,25 +1,38 @@
+---
+interface Props {
+  welcomeTitle?: string;
+  paragraph1?: string;
+  paragraph2?: string;
+  rulesTitle?: string;
+  rulesHigherText?: string;
+  rulesHigherHref?: string;
+  rulesHighschoolText?: string;
+  rulesHighschoolHref?: string;
+}
+
+const {
+  welcomeTitle = 'Te damos la bienvenida a la UVB',
+  paragraph1 = 'En la <strong>Universidad Valle del Bravo</strong> formamos profesionistas preparados para enfrentar los retos del mundo actual con conocimiento, ética y liderazgo. Con más de 45 años de trayectoria en la educación privada, nos enorgullece contar con dos campus: Tampico y Reynosa, donde ofrecemos programas educativos de alta calidad.',
+  paragraph2 = 'Nuestra oferta incluye <strong>preparatoria</strong>, una amplia variedad de <strong>licenciaturas</strong> y programas de <strong>educación continua</strong>, todos diseñados para impulsar tu desarrollo personal y profesional. En la UVB, combinamos innovación, tecnología y formación integral para que alcances tu máximo potencial y transformes tu entorno.',
+  rulesTitle = 'Normatividad',
+  rulesHigherText = 'Reglamento General de Estudiantes de Tipo Superior',
+  rulesHigherHref = '/reglamento-ts/',
+  rulesHighschoolText = 'Reglamento Escolar Bachillerato',
+  rulesHighschoolHref = '/reglamento-bachillerato/',
+} = Astro.props;
+---
+
 <section class="info" aria-labelledby="welcome-title">
   <div class="section-inner info__grid">
     <article>
-      <h2 id="welcome-title">Te damos la bienvenida a la UVB</h2>
-      <p>
-        En la <strong>Universidad Valle del Bravo</strong> formamos profesionistas preparados
-        para enfrentar los retos del mundo actual con conocimiento, ética y liderazgo. Con más
-        de 45 años de trayectoria en la educación privada, nos enorgullece contar con dos
-        campus: Tampico y Reynosa, donde ofrecemos programas educativos de alta calidad.
-      </p>
-      <p>
-        Nuestra oferta incluye <strong>preparatoria</strong>, una amplia variedad de
-        <strong>licenciaturas</strong> y programas de <strong>educación continua</strong>,
-        todos diseñados para impulsar tu desarrollo personal y profesional. En la UVB,
-        combinamos innovación, tecnología y formación integral para que alcances tu máximo
-        potencial y transformes tu entorno.
-      </p>
+      <h2 id="welcome-title">{welcomeTitle}</h2>
+      <p><Fragment set:html={paragraph1} /></p>
+      <p><Fragment set:html={paragraph2} /></p>
     </article>
     <aside aria-labelledby="rules-title">
-      <h2 id="rules-title">Normatividad</h2>
-      <a href="/reglamento-ts/">Reglamento General de Estudiantes de Tipo Superior</a>
-      <a href="/reglamento-bachillerato/">Reglamento Escolar Bachillerato</a>
+      <h2 id="rules-title">{rulesTitle}</h2>
+      <a href={rulesHigherHref}>{rulesHigherText}</a>
+      <a href={rulesHighschoolHref}>{rulesHighschoolText}</a>
     </aside>
   </div>
 </section>

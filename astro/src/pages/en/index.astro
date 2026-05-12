@@ -1,0 +1,102 @@
+---
+import CampusSelector from '../../components/CampusSelector.astro';
+import HomeHero from '../../components/HomeHero.astro';
+import HomeInfo from '../../components/HomeInfo.astro';
+
+const title = 'UVB Valle del Bravo University - We Are Valle';
+const description =
+  'Valle del Bravo University. Private education in Tampico and Reynosa with high school, undergraduate programs, and continuing education.';
+const canonicalUrl = 'https://uvb.edu.mx/en/';
+const ogImage = 'https://uvb.edu.mx/images/home/hero-lab.webp';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Valle del Bravo University" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="lang-switch"><a href="/">ES</a><span>|</span><a class="active" href="/en/">EN</a></div>
+    <HomeHero heading="Valle del Bravo University" brandAlt="We Are Valle" />
+    <CampusSelector
+      title="Select your Campus"
+      campuses={[
+        { name: 'Campus Reynosa', href: '/en/reynosa/', image: '/images/home/campus-reynosa.webp' },
+        { name: 'Campus Tampico', href: 'https://tampico.uvb.edu.mx/', image: '/images/home/campus-tampico.webp' },
+      ]}
+    />
+    <HomeInfo
+      welcomeTitle="Welcome to UVB"
+      paragraph1="At <strong>Valle del Bravo University</strong>, we train professionals ready to face today’s challenges with knowledge, ethics, and leadership. With more than 45 years of private education experience, we are proud to have two campuses: Tampico and Reynosa, where we offer high-quality academic programs."
+      paragraph2="Our offer includes <strong>high school</strong>, a broad variety of <strong>undergraduate programs</strong>, and <strong>continuing education</strong> tracks, all designed to boost your personal and professional development. At UVB, we combine innovation, technology, and comprehensive training so you can reach your full potential and transform your environment."
+      rulesTitle="Regulations"
+      rulesHigherText="General Regulations for Higher Education Students"
+      rulesHigherHref="/en/reglamento-ts/"
+      rulesHighschoolText="High School Academic Regulations"
+      rulesHighschoolHref="/en/reglamento-bachillerato/"
+    />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    font-family: Montserrat, sans-serif;
+    color: #222;
+  }
+
+  .lang-switch {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(4px);
+  }
+
+  .lang-switch a {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.7;
+  }
+
+  .lang-switch a.active {
+    opacity: 1;
+    font-weight: 700;
+  }
+</style>
