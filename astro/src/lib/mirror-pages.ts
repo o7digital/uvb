@@ -87,7 +87,11 @@ export function localizeInternalUrls(html: string): string {
   cleaned = cleaned
     .replace(/<link rel="alternate" type="application\/rss\+xml"[^>]*>\s*/g, '')
     .replace(/<link rel="alternate" title="oEmbed \(JSON\)"[^>]*>\s*/g, '')
-    .replace(/<link rel="alternate" title="oEmbed \(XML\)"[^>]*>\s*/g, '');
+    .replace(/<link rel="alternate" title="oEmbed \(XML\)"[^>]*>\s*/g, '')
+    .replace(/<link rel="https:\/\/api\.w\.org\/"[^>]*>\s*/g, '')
+    .replace(/<link rel="alternate" title="JSON" type="application\/json"[^>]*>\s*/g, '')
+    .replace(/<link rel="EditURI" type="application\/rsd\+xml"[^>]*>\s*/g, '')
+    .replace(/<link rel="pingback"[^>]*>\s*/g, '');
 
   // Use a single robots directive.
   cleaned = cleaned
